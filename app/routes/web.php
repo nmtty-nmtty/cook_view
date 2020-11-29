@@ -17,4 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/top', 'TopController@index')->name('top');
+Route::get('/mypage', 'MyPageController@index')->name('mypage');
+Route::get('/mypage/edit', 'MyPageController@edit')->name('mypage.edit');
+Route::post('/mypage/update/{id}', 'MyPageController@update')->name('mypage.update');
