@@ -18,6 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/top', 'TopController@index')->name('top');
-Route::get('/mypage', 'MyPageController@index')->name('mypage');
-Route::get('/mypage/edit', 'MyPageController@edit')->name('mypage.edit');
-Route::post('/mypage/update/{id}', 'MyPageController@update')->name('mypage.update');
+
+Route::prefix('mypage')->group(function () {
+    Route::get('/', 'MyPageController@index')->name('mypage');
+    Route::get('/edit', 'MyPageController@edit')->name('mypage.edit');
+    Route::post('/update_image/{id}', 'MyPageController@update_image')->name('mypage.update_image');
+    Route::post('/update/{id}', 'MyPageController@update')->name('mypage.update');
+});
