@@ -25,3 +25,10 @@ Route::prefix('mypage')->group(function () {
     Route::post('/update_image/{id}', 'MyPageController@update_image')->name('mypage.update_image');
     Route::post('/update/{id}', 'MyPageController@update')->name('mypage.update');
 });
+
+Route::prefix('recipe')->group(function () {
+    Route::get('/', 'RecipeController@index')->name('recipe');
+    // Route::get('/edit', 'MyPageController@edit')->name('mypage.edit');
+    Route::post('/', 'RecipeController@search')->name('mypage.update_image');
+    // Route::post('/update/{id}', 'MyPageController@update')->name('mypage.update');
+});
