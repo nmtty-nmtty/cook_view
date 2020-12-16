@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
     public function index()
     {
-        return view('recipe/index');
+        $articles = (new Article)->find_userId(Auth::id());
+        logger($articles->toArray());
+
+        return view('recipe.index', compact('articles'));
     }
 
     public function confirm(Request $request)
@@ -18,34 +22,37 @@ class RecipeController extends Controller
         $inputs = $request->all();
         $category = $request->category;
 
+        // 登録用にカテゴリをキーからバリューに変換
         foreach (config('category') as $key => $score) {
             if ($key == $category) {
                 $inputs["category"] = $score['label'];
             }
         }
 
-        // ログイン後トップ画面に遷移
+        $request->session()->put($inputs);
+
         return view('recipe.confirm', compact('inputs'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
+        //登録画面に入力した値を取得
+        $inputs = session()->all();
+        logger($inputs);
         $article = Article::create([
-            'user_id' => $user_id,
-            'title' => $request->title,
-            'context' => $request->context,
-            'category' => $request->category,
-            'recipe_title' => $request->recipe_title,
-            'recipe_author' => $request->recipe_author,
-            'recipe_referer' => $request->recipe_referer,
+            'user_id' => Auth::id(),
+            'title' => $inputs["title"],
+            'context' => $inputs["context"],
+            'category' => $inputs["category"],
+            'recipe_title' => $inputs["recipe_title"],
+            'recipe_author' => $inputs["recipe_author"],
+            'recipe_referer' => $inputs["recipe_referer"],
         ]);
 
         logger($article->toArray());
 
-        // fillable対象を全てupdate
-        $request->session()->flash('flash_message', '登録しました');
+        session()->flash('msg_success', 'レシピを登録しました');
 
-        // ログイン後トップ画面に遷移
         return redirect('/top');
     }
 }

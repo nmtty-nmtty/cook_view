@@ -22,11 +22,6 @@
 
                         <div>
                             投稿カテゴリ：{{ $inputs["category"] }}
-                            {{-- @foreach(config('category') as $key => $score)
-                            @if ($key == $category)
-                            <option value="{{ $key }}">{{ $score['label'] }}</option>
-                            @endif
-                            @endforeach --}}
                         </div>
 
                         <br>
@@ -59,8 +54,8 @@
                         </div>
                         <br>
                         <div class="row justify-content-center">
-                            <button type="button" onclick="location.href=' {{ route('recipe.confirm')}}'"
-                                　class="btn btn-primary">登録画面に戻る</button>
+                            <button type="button" onclick="location.href=' {{ route('recipe')}}'"
+                                　class="btn btn-primary">入力画面に戻る</button>
                         </div>
                         <div class="row justify-content-center">
                             <button type="button" onclick="location.href=' {{ route('top')}}'"
