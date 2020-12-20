@@ -12,4 +12,9 @@ class Article extends Model
     {
         return Article::where('user_id', $user_id)->get();
     }
+
+    public function find_Id($id)
+    {
+        return Article::find($id);
+    }
 }

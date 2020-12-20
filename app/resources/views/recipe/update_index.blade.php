@@ -5,34 +5,23 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Recipe Create_index</div>
+                <div class="card-header">Recipe Update_index</div>
                 <div class="card-body">
                     <br>
                     <form action="{{ route('recipe.confirm') }}" method="POST" class="form">
                         @csrf
                         <div>
-                            投稿タイトル：
-                            <input type="text" name="title" class="form-control" maxlength="255"
-                                value="{{ old('title') }}">
+                            投稿タイトル：{{ $article->title }}
                         </div>
                         <div>
-                            レシピ作者：
-                            <input type="text" name="recipe_author" class="form-control" maxlength="255"
-                                value="{{ old('recipe_author') }}">
+                            レシピ作者：{{ $article->recipe_author }}
                         </div>
                         <div>
-                            参考元料理名：
-                            <input type="text" name="recipe_title" class="form-control" maxlength="255"
-                                value="{{ old('recipe_title') }}">
+                            参考元料理名：{{ $article->recipe_title }}
                         </div>
 
                         <div>
-                            投稿カテゴリ：
-                            <select name="category">
-                                @foreach(config('category') as $key => $score)
-                                <option value="{{ $key }}">{{ $score['label'] }}</option>
-                                @endforeach
-                            </select>
+                            投稿カテゴリ：{{ $article->category }}
                         </div>
 
                         <br>
@@ -53,24 +42,24 @@
                         </div>
 
                         <div>
-                            投稿者コメント：
-                            <textarea type="text" name="context" class="form-control" maxlength="255"
-                                value="{{ old('context') }}"></textarea>
+                            投稿者コメント：{{ $article->context }}
                         </div>
                         <br>
                         <div>
-                            レシピURL：
-                            <input type="text" name="recipe_referer" class="form-control" maxlength="255"
-                                value="{{ old('recipe_referer') }}">
+                            レシピURL：{{ $article->recipe_referer }}
                         </div>
                         <br>
                         <div class="row justify-content-center">
-                            <button class="btn btn-primary" type="submit">投稿内容を確認する
+                            <button class="btn btn-danger" type="submit">投稿記事を削除する
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <button class="btn btn-primary" type="submit">更新内容を入力する
                         </div>
                         <br>
                         <div class="row justify-content-center">
                             <button type="button" onclick="location.href=' {{ route('top')}}'"
-                                　class="btn btn-primary">投稿をキャンセルする</button>
+                                　class="btn btn-primary">更新をキャンセルする</button>
                         </div>
                     </form>
                 </div>

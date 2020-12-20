@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Integer;
 
 class RecipeController extends Controller
 {
@@ -32,6 +33,14 @@ class RecipeController extends Controller
         $request->session()->put($inputs);
 
         return view('recipe.confirm', compact('inputs'));
+    }
+
+    public function update_index($id)
+    {
+        $article = (new Article)->find_Id($id);
+        logger($article);
+
+        return view('recipe.update_index', compact('article'));
     }
 
     public function create()

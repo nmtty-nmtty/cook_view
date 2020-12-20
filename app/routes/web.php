@@ -28,6 +28,7 @@ Route::prefix('mypage')->group(function () {
 
 Route::prefix('recipe')->group(function () {
     Route::get('/', 'RecipeController@index')->name('recipe');
+    Route::get('/update_index/{id}', 'RecipeController@update_index')->name('recipe.update_index');
     // Route::get('/edit', 'MyPageController@edit')->name('mypage.edit');
     Route::post('/confirm', 'RecipeController@confirm')->name('recipe.confirm');
     Route::post('/create', 'RecipeController@create')->name('recipe.create');

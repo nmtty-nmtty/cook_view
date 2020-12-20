@@ -22,24 +22,25 @@
             </div>
             <button type="submit" onclick="location.href=' {{ route('recipe')}}'" 　class="button">レシピを投稿する</button>
             <br>
-
+            <br>
+            {{-- 権限ごとにボタンの表示内容と遷移先TODO --}}
             @if (isset($articles))
             @foreach ($articles as $article)
-            <div>{{ $article->title }} ああああ</div>
-            @endforeach
-            @endif
-
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
+            <div class="card mb-3">
+                <?php $id = $article->id ?>
+                <div>投稿タイトル：{{ $article->title }}</div>
+                <div>投稿者コメント：{{ $article->context }}</div>
+                <div>投稿カテゴリ：{{ $article->category }}</div>
+                <div>参考元料理名：{{ $article->recipe_title }}</div>
+                <div>レシピ作者：{{ $article->recipe_author }}</div>
+                <div>レシピURL：{{ $article->recipe_referer }}</div>
+                <div class="row justify-content-center">
+                    <button type="submit" onclick="location.href=' {{ route('recipe.update_index',['id' => $id]) }}'"
+                        　class="button">編集する</button>
                 </div>
             </div>
+            @endforeach
+            @endif
         </div>
     </div>
 </div>
