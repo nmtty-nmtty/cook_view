@@ -43,6 +43,16 @@ class RecipeController extends Controller
         return view('recipe.update_index', compact('article'));
     }
 
+    public function delete(Request $request)
+    {
+        $article = (new Article)->find_Id($request->id)->delete();
+        logger($article);
+
+        session()->flash('msg_success', 'レシピを削除しました');
+
+        return redirect('/top');
+    }
+
     public function create()
     {
         //登録画面に入力した値を取得
