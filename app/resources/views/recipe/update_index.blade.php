@@ -8,7 +8,6 @@
                 <div class="card-header">Recipe Update_index</div>
                 <div class="card-body">
                     <br>
-                    @csrf
                     <div>
                         投稿タイトル：{{ $article->title }}
                     </div>
@@ -56,7 +55,8 @@
                         </div>
                     </form>
                     <div class="row justify-content-center">
-                        <button class="btn btn-primary" type="submit">更新内容を入力する
+                        <button class="btn btn-primary" type="submit"
+                            onclick="location.href=' {{ route('recipe.update_edit')}}'">更新内容を入力する
                     </div>
                     <br>
                     <div class="row justify-content-center">
